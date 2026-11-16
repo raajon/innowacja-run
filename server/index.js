@@ -3,7 +3,6 @@ import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import path from 'path';
 import http from 'http';
-import ParseSwagger from 'parse-server-swagger';
 import fs from 'fs';
 
 import { fileURLToPath } from 'url';
@@ -30,15 +29,6 @@ if (!process.env.TESTING) {
   });
   await server.start();
   app.use(mountPath, server.app);
-
-//  const parseSwagger = new ParseSwagger({});
-  var parseSwagger = new ParseSwagger({
-    serverURL: config.publicServerURL,
-    apiRoot: "/parse",
-    appId: config.appId,
-    masterKey: config.masterKey,
-  });
-  app.use(parseSwagger);
 
   const dashboard = new ParseDashboard({
     "apps": [
